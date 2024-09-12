@@ -30,7 +30,7 @@ def get_post_create():
             data["age"] = 0
         print(data)
         cursor = connection.cursor()
-        cursor.execute(f"""insert into pets (name, age, type, owner) values {'data["name"]'}, {'data["age"]'}, {'data["type"]'}, {'data["owner"]'}""")
+        cursor.execute(f"""insert into pets (name, age, type, owner) values ('{data["name"]}', {data["age"]}, '{data["type"]}', '{data["owner"]}')""")
         return redirect(url_for('get_list'))
 
 @app.route("/update<id>", methods=["GET"])
