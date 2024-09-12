@@ -1,25 +1,30 @@
-import sqlite3
 from flask import Flask, render_template
+import sqlite3
 
 app = Flask(__name__)
-connection = sqlite3.connect("pets.db", check_same_thread=False)
+connection = sqlite3.connect("pets.db",check_same_thread=False)
 
 @app.route("/")
 @app.route("/hello")
-def hello_world():
-    return "<p>Hello there, Big World!</p>"
+def get_hello():
+    return "<p>Hello there, World!</p>"
 
 @app.route("/list")
 def get_list():
     cursor = connection.cursor()
     cursor.execute("select * from pets")
     rows = cursor.fetchall()
-
-    output = ""
-    rows =[list(row) for row in rows]
+    rows = [list(row) for row in rows]    
     print(rows)
-    return Flask.render_template("list.html", prof={"name":"Ryan", "class":"ADSD"}, rows=rows)
-    
+    return render_template("list.html", prof={"name":"Dr. D", "class":"ADSD"}, rows=rows)   
+
+@app.route("/delete/<id>")
+def get_delete(id):
+    cursor = connection.cursor()
+    cursor.execute("""delete from pets where id = ?""",(id,))
+    connection.commit()
+    return f"<p>Deleted ID={[id]}!</p>"
+
 @app.route("/goodbye")
-def goodbye():
-    return "<p>Goodbye, then! Have a truly nice day!</p>"
+def get_goodbye():
+    return "<p>Goodbye, then! Have a nice day!</p>"
