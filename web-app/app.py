@@ -18,10 +18,6 @@ def get_list():
     print(rows)
     return render_template("list.html", prof={"name":"Dr. D", "class":"ADSD"}, rows=rows)   
 
-@app.route("/create", methods=["GET"])
-def get_create():
-    return render_template("create.html")
-
 @app.route("/delete/<id>")
 def get_delete(id):
     cursor = connection.cursor()
