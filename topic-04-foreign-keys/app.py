@@ -5,6 +5,33 @@ app = Flask(__name__)
 connection = sqlite3.connect("pets.db", check_same_thread=False)
 connection.execute("PRAGMA foreign_keys = 1")
 
+# Ensure the database tables are created
+cursor = connection.cursor()
+
+# Create 'kind' table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS kind (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        kind_name TEXT NOT NULL,
+        food TEXT,
+        noise TEXT
+    )
+''')
+
+# Create 'pets' table
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS pets (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER,
+        owner TEXT,
+        kind_id INTEGER,
+        FOREIGN KEY (kind_id) REFERENCES kind (id) ON DELETE CASCADE
+    )
+''')
+
+connection.commit()
+
 # List of pets, showing related kind information
 @app.route("/")
 @app.route("/list")
