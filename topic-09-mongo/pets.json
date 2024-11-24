@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Suzy",
+        "age": 3,
+        "owner": "Greg",
+        "kind_id": "674298697058c26eddf408f8",
+        "_id": "674298697058c26eddf408fb"
+    },
+    {
+        "name": "Sandy",
+        "age": 2,
+        "owner": "Steve",
+        "kind_id": "674298697058c26eddf408f9",
+        "_id": "674298697058c26eddf408fc"
+    },
+    {
+        "name": "Dorothy",
+        "age": 1,
+        "owner": "Elizabeth",
+        "kind_id": "674298697058c26eddf408f8",
+        "_id": "674298697058c26eddf408fd"
+    },
+    {
+        "name": "Heidi",
+        "age": 4,
+        "owner": "David",
+        "kind_id": "674298697058c26eddf408f8",
+        "_id": "674298697058c26eddf408fe"
+    }
+]

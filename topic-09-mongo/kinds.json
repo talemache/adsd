@@ -1,0 +1,20 @@
+[
+    {
+        "kind_name": "Dog",
+        "food": "Dog food",
+        "noise": "Bark",
+        "_id": "674298697058c26eddf408f8"
+    },
+    {
+        "kind_name": "Cat",
+        "food": "Cat food",
+        "noise": "Meow",
+        "_id": "674298697058c26eddf408f9"
+    },
+    {
+        "kind_name": "Fish",
+        "food": "Fish flakes",
+        "noise": "Blub",
+        "_id": "674298697058c26eddf408fa"
+    }
+]

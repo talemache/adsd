@@ -47,7 +47,41 @@ def create_database():
 
     pet_collection.insert_many(pets)
     
+import json
+import csv
+
+def export_to_json_and_csv():
+    # Connect to collections
+    kind_collection = pets_db.kind_collection
+    pet_collection = pets_db.pet_collection
+
+    # Export 'kind' collection to JSON
+    kinds = list(kind_collection.find())
+    with open("kinds.json", "w") as kind_file:
+        json.dump(kinds, kind_file, indent=4, default=str)  # default=str for ObjectId serialization
+
+    # Export 'pet' collection to JSON
+    pets = list(pet_collection.find())
+    with open("pets.json", "w") as pet_file:
+        json.dump(pets, pet_file, indent=4, default=str)
+
+    # Export 'kind' collection to CSV
+    with open("kinds.csv", "w", newline='') as kind_file:
+        writer = csv.DictWriter(kind_file, fieldnames=["_id", "kind_name", "food", "noise"])
+        writer.writeheader()
+        writer.writerows(kinds)
+
+    # Export 'pet' collection to CSV
+    with open("pets.csv", "w", newline='') as pet_file:
+        writer = csv.DictWriter(pet_file, fieldnames=["_id", "name", "age", "kind_id", "owner"])
+        writer.writeheader()
+        writer.writerows(pets)
+
+    print("Exported pets and kinds to JSON and CSV.")
+
+
 if __name__ == "__main__":
     create_database()
+    export_to_json_and_csv()  # Export data to files
     print("done.")
 
